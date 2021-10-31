@@ -1,0 +1,2 @@
+# base_repository
+Repository間でのGitHubActionsのテストです
