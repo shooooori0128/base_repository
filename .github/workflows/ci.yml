@@ -13,17 +13,19 @@ jobs:
   ci:
     runs-on: ${{ matrix.os }}
 
+    env:
+      ACCOUNT_NAME: shota-kamezawa
+      COPY_REPOSITORY: copy_repository
+
     strategy:
       matrix:
-        account_name: ["shooooori0128"]
         node: [12]
         os: [ubuntu-latest]
-        copy_repository: ["copy_repository"]
 
     steps:
       - name: sync-repository
         uses: peter-evans/repository-dispatch@v1
         with:
           event-type: sync-repository
-          repository: ${{ matrix.account_name }}/${{ matrix.copy_repository }}
+          repository: ${{ env.ACCOUNT_NAME }}/${{ env.COPY_REPOSITORY }}
           token: ${{ secrets.SYNC_REPOSITORY }}
