@@ -30,4 +30,5 @@ jobs:
         with:
           event-type: sync-repository
           repository: ${{ env.ACCOUNT_NAME }}/${{ env.COPY_REPOSITORY }}
+          client-payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}" }'
           token: ${{ secrets.SYNC_REPOSITORY }}
