@@ -35,4 +35,4 @@ jobs:
           event-type: sync-repository
           repository: ${{ env.ACCOUNT_NAME }}/${{ env.COPY_REPOSITORY }}
           client-payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "pr_url": "${{ github.event.pull_request.html_url }}", "pr_title": "${{ github.event.pull_request.title }}" }'
-          token: ${{ github.token }}
+          token: ${{ secrets.SYNC_REPOSITORY }}
