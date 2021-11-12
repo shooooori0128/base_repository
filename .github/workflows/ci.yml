@@ -8,6 +8,8 @@ on:
       - main
     paths:
       - "src/**"
+      - "!**.stories.js"
+      - "!**.mdx"
 
 jobs:
   ci:
