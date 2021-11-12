@@ -3,9 +3,11 @@ name: ci
 
 # Execute workflow on push and pull request to any branch
 on:
-  push:
+  pull_request:
     branches:
       - main
+    types:
+      - closed
     paths:
       - "src/**"
       - "!**.stories.js"
@@ -13,6 +15,8 @@ on:
 
 jobs:
   ci:
+    if: github.event.pull_request.merged == true
+
     runs-on: ${{ matrix.os }}
 
     env:
@@ -30,5 +34,5 @@ jobs:
         with:
           event-type: sync-repository
           repository: ${{ env.ACCOUNT_NAME }}/${{ env.COPY_REPOSITORY }}
-          client-payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}" }'
+          client-payload: '{ "ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "pr_url": "${{ github.event.pull_request.html_url }}" }'
           token: ${{ secrets.SYNC_REPOSITORY }}
